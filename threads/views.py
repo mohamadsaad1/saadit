@@ -1,9 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Thread
+from django.contrib.auth.views import LoginView
 
 
+
+
+
+class Home(LoginView):
+  template_name = 'home.html'
 
 def threads_index(request):
   threads = Thread.objects.all()
@@ -20,3 +26,15 @@ class ThreadDetail(generic.DetailView):
 class ThreadCreate(CreateView):
   model = Thread
   fields = '__all__'
+
+
+class ThreadUpdate(UpdateView):
+  model = Thread
+  fields = ['title', 'slug', 'content']
+
+
+class ThreadDelete(DeleteView):
+  model = Thread
+  success_url = '/threadlist'
+
+

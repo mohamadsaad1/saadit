@@ -10,6 +10,10 @@
         <p class="card-text ">{{ object.content | safe }}</p>
       </div>
     </div>
+    <div class="thread-actions">
+      <a href="{% url 'thread_update'  thread.slug  %}" class="btn warn">Edit</a>
+      <a href="{% url 'thread_delete'  thread.slug  %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </div>
 

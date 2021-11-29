@@ -16,22 +16,23 @@
     <body>
         <nav class="navbar navbar-expand-lg " >
             <div class="first-class">
-                <a href="{% url 'home' %}">All threads</a>
+                <a href="{% url 'threadlist' %}">All threads</a>
                 <div class="second-class" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                      <li><a href="{% url 'threads_create' %}">Create thread</a></li>
+                      <li><a href="{% url 'thread_create' %}">Create thread</a></li>
                         <li>
                             <a href="#">💬</a>
                         </li>
                         <li >
                             <a href="#">🔔</a>
                         </li>
+                        <li><a href="{% url 'home' %}">Login</a></li>
+                        
                     </ul>
                 </div>
             </div>
         </nav>
         {% block content %}
-        <!-- Content Goes here -->
         {% endblock content %}
     </body>
 </html>
