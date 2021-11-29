@@ -15,13 +15,18 @@ def threads_index(request):
   threads = Thread.objects.all()
   return render(request, 'threads/index.html', { 'threads': threads })
 
-class ThreadList(generic.ListView):
-    queryset = Thread.objects.filter(status=1).order_by('-created_on')
-    template_name = 'index.html'
+# def threads_index(request):
+#     threads = Thread.objects.filter(status=1).order_by('-created_on')
+#     return render(request, 'threads/index.html',{
+#       "threads" : threads
+#     })
 
-class ThreadDetail(generic.DetailView):
-    model = Thread
-    template_name = 'thread_detail.html'
+
+def threads_detail(request, thread_id):
+  thread= Thread.objects.get(id=thread_id)
+  return render(request, 'threads/detail.html', {
+    "thread" : thread
+  })
 
 class ThreadCreate(CreateView):
   model = Thread
@@ -35,6 +40,6 @@ class ThreadUpdate(UpdateView):
 
 class ThreadDelete(DeleteView):
   model = Thread
-  success_url = '/threadlist'
+  success_url = '/threads'
 
 

@@ -11,7 +11,7 @@
 <form action="" method="POST" class="form">
   {% csrf_token %}
   <a 
-    href="{% url 'thread_detail' thread.slug %}" 
+    href="{% url 'threads_detail' thread.id %}" 
     class="btn secondary"
   >
     Cancel
