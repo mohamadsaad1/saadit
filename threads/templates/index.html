@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for thread in thread_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ thread.title }}</h2>
+                    <p class="card-text text-muted h6">{{ thread.author }} | {{ thread.created_on}} </p>
+                    <p class="card-text">{{thread.content|slice:":200" }}</p>
+                    <a href="{% url 'thread_detail' thread.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>    
+    </div>
+</div>
+{%endblock%}
