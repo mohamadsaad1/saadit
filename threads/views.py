@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Thread
 
-# Add the following import
-from django.http import HttpResponse
 
-# Define the home view
-def home(request):
-  return HttpResponse('<h1>Hello ᓚᘏᗢ</h1>')
+class ThreadList(generic.ListView):
+    queryset = Thread.objects.filter(status=1).order_by('-created_on')
+    template_name = 'index.html'
+
+class ThreadDetail(generic.DetailView):
+    model = Thread
+    template_name = 'thread_detail.html'
