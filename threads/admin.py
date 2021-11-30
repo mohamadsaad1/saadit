@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Thread
+from .models import Thread, Photo
 
 class ThreadAdmin(admin.ModelAdmin):
     list_display = ('title', 'status','created_on')
@@ -8,3 +8,4 @@ class ThreadAdmin(admin.ModelAdmin):
     
   
 admin.site.register(Thread, ThreadAdmin)
+admin.site.register(Photo)

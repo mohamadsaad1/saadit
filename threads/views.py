@@ -1,13 +1,17 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Thread
+from .models import Thread, Photo
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import RedirectView
+import uuid
+import boto3
 
+
+S3_BASE_URL = "https://s3.us-east-2.amazonaws.com/"
+BUCKET = "saadit-bucket"
 
 
 
@@ -36,7 +40,7 @@ class ThreadCreate(LoginRequiredMixin, CreateView):
   fields = ['title','content', 'author', 'status',]
   def form_valid(self, form):
     # Assign the logged in user (self.request.user)
-    form.instance.user = self.request.user  # form.instance is the cat
+    form.instance.user = self.request.user  
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
@@ -73,6 +77,30 @@ class ThreadDelete(LoginRequiredMixin, DeleteView):
 #         return url_
   
 
+def add_photo(request, thread_id):
+  # photo-file will be the "name" attribute on the <input type="file">
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+    s3 = boto3.client('s3')
+    # need a unique "key" for S3 / needs image file extension too
+		# uuid.uuid4().hex generates a random hexadecimal Universally Unique Identifier
+    # Add on the file extension using photo_file.name[photo_file.name.rfind('.'):]
+    key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind('.'):]
+  
+    try:
+      s3.upload_fileobj(photo_file, BUCKET, key)
+  
+      url = f"{S3_BASE_URL}{BUCKET}/{key}"
+    
+      photo = Photo(url=url, thread_id=thread_id)
+    
+      thread_photo = Photo.objects.filter(thread_id=thread_id)
+      if thread_photo.first():
+        thread_photo.first().delete()
+      photo.save()
+    except Exception as err:
+      print('An error occurred uploading file to S3: %s' % err)
+  return redirect('threads_detail', thread_id=thread_id)
 
 
 

@@ -7,6 +7,16 @@
 {% block content %}
 
 <div class="container">
+    <div class="card-img-container">
+        {% if thread.photo.url %}
+        <img 
+            src="{{thread.photo.url}}" 
+            alt="A photo of {{thread.title}}"
+            class="usr-img"
+        >
+        
+        {% endif %}
+    </div>
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">

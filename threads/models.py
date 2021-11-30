@@ -26,3 +26,10 @@ class Thread(models.Model):
 
     def get_absolute_url(self):
       return reverse('threads_detail', kwargs={'thread_id': self.id})
+
+class Photo(models.Model):
+  url = models.CharField(max_length=250)
+  thread = models.OneToOneField(Thread, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for thread_id: {self.thread_id} @{self.url}"
