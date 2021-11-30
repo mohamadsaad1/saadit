@@ -32,7 +32,7 @@ def threads_detail(request, thread_id):
 
 class ThreadCreate(CreateView):
   model = Thread
-  fields = ['title','content', 'author', 'status','user']
+  fields = ['title','content', 'author', 'status',]
   def form_valid(self, form):
     # Assign the logged in user (self.request.user)
     form.instance.user = self.request.user  # form.instance is the cat
@@ -42,7 +42,7 @@ class ThreadCreate(CreateView):
 
 class ThreadUpdate(UpdateView):
   model = Thread
-  fields = ['title', 'slug', 'content']
+  fields = ['title', 'content']
 
 
 class ThreadDelete(DeleteView):
