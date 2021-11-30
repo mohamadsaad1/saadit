@@ -19,6 +19,15 @@
               {% if user.is_authenticated %}
                 <a href="{% url 'threads_index' %}">All threads</a>
                 <div class="second-class" id="navbarResponsive">
+                  <div class="col-3">
+                    <a href="javascript:{document.getElementById('{% url 'upvote' 
+                    thread.id %}').submit()}">
+                    <button class="btn btn-primary btn-lg btn- 
+                    block" name="btn1" value="upvote">
+                    <span class="oi oi-caret-top"> 
+                    </span> Upvote {{thread.votes_total }}</button></a>
+                </div>
+                </div>
                     <ul class="navbar-nav ml-auto">
                       <li><a href="{% url 'thread_create' %}">Create thread</a></li>
                         <li>

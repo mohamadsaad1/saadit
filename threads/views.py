@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import RedirectView
 
 
 
@@ -47,7 +48,34 @@ class ThreadUpdate(LoginRequiredMixin, UpdateView):
 
 class ThreadDelete(LoginRequiredMixin, DeleteView):
   model = Thread
-  success_url = '/threads'
+  success_url = '/threads/'
+
+# def threads_delete(request, thread_id):
+#     thread = Thread.objects.get(id=thread_id)
+#     if request.user == thread.author.user:
+#         thread.delete()
+#     return redirect('threads/')
+
+# class ThreadVoteToggle(RedirectView):
+
+#     def get_redirect_url(self, *args ,**kwargs):
+
+#         obj = get_object_or_404(Thread, pk=self.kwargs['pk'])
+#         url_ = obj.get_absolute_url() 
+#         user = self.request.user
+#         if user.is_authenticated():
+#             if user in obj.votes_total.all():
+#                 # you could remove the user if double upvote or display a message or what ever you want here
+#                 obj.votes_total.remove(user)
+#             else:
+#                 obj.votes_total.add(user)
+
+#         return url_
+  
+
+
+
+
 
 def signup(request):
   error_message = ''

@@ -16,6 +16,7 @@ class Thread(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 
     class Meta:
         ordering = ['-created_on']

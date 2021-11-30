@@ -11,8 +11,10 @@
       </div>
     </div>
     <div class="thread-actions">
+      {% if thread.user == request.user%}
       <a href="{% url 'threads_update' thread.id  %}" class="btn warn">Edit</a>
       <a href="{% url 'threads_delete' thread.id  %}" class="btn danger">Delete</a>
+      {% endif%}
     </div>
   </div>
 </div>
