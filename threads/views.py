@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -30,7 +30,7 @@ def threads_detail(request, thread_id):
     "thread" : thread
   })
 
-class ThreadCreate(CreateView):
+class ThreadCreate(LoginRequiredMixin, CreateView):
   model = Thread
   fields = ['title','content', 'author', 'status',]
   def form_valid(self, form):
@@ -40,12 +40,12 @@ class ThreadCreate(CreateView):
     return super().form_valid(form)
 
 
-class ThreadUpdate(UpdateView):
+class ThreadUpdate(LoginRequiredMixin, UpdateView):
   model = Thread
   fields = ['title', 'content']
 
 
-class ThreadDelete(DeleteView):
+class ThreadDelete(LoginRequiredMixin, DeleteView):
   model = Thread
   success_url = '/threads'
 
