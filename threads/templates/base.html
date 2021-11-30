@@ -19,6 +19,7 @@
                 <a href="{% url 'threads_index' %}">All threads</a>
                 <div class="second-class" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                      {% if user.is_authenticated %}
                       <li><a href="{% url 'thread_create' %}">Create thread</a></li>
                         <li>
                             <a href="#">💬</a>
@@ -26,7 +27,11 @@
                         <li >
                             <a href="#">🔔</a>
                         </li>
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                        {% else %}
                         <li><a href="{% url 'home' %}">Login</a></li>
+                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                        {% endif %}
                         
                     </ul>
                 </div>

@@ -29,7 +29,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG') == 'True'
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,7 +125,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Add this variable to specify where successful logins should redirect to
-LOGIN_REDIRECT_URL = 'threads'
+LOGIN_URL = 'home'
+LOGIN_REDIRECT_URL = 'threads/'
+
+LOGOUT_REDIRECT_URL = 'home'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -15,5 +15,6 @@ urlpatterns = [
 
     path('<int:pk>/update/', views.ThreadUpdate.as_view(), name='threads_update'),
     path('<int:pk>/delete/', views.ThreadDelete.as_view(), name='threads_delete'),
+    path('accounts/signup/', views.signup, name='signup'),
 
 ]
