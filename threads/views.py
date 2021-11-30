@@ -32,7 +32,7 @@ def threads_detail(request, thread_id):
 
 class ThreadCreate(CreateView):
   model = Thread
-  fields = '__all__'
+  fields = ['title','content', 'author', 'status','user']
   def form_valid(self, form):
     # Assign the logged in user (self.request.user)
     form.instance.user = self.request.user  # form.instance is the cat
@@ -60,7 +60,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in
       login(request, user)
-      return redirect('threads')
+      return redirect('threads_index')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
