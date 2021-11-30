@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 class Home(LoginView):
   template_name = 'home.html'
 
-
+@login_required
 def threads_index(request):
   threads = Thread.objects.filter(user=request.user)
   return render(request, 'threads/index.html', { 'threads': threads })
@@ -23,7 +23,7 @@ def threads_index(request):
 #     return render(request, 'threads/index.html',{
 #       "threads" : threads
 #     })
-
+@login_required
 def threads_detail(request, thread_id):
   thread= Thread.objects.get(id=thread_id)
   return render(request, 'threads/detail.html', {
