@@ -15,7 +15,7 @@ class Home(LoginView):
 
 @login_required
 def threads_index(request):
-  threads = Thread.objects.filter(user=request.user)
+  threads = Thread.objects.all()
   return render(request, 'threads/index.html', { 'threads': threads })
 
 # def threads_index(request):
