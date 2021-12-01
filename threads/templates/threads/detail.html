@@ -1,54 +1,54 @@
-{% extends 'base.html' %}
-{% load static %} 
+  {% extends 'base.html' %}
+  {% load static %} 
 
-{% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/thread-detail.css' %}"/>
-<script defer src="{% static 'js/thread-detail.js' %}"></script>
-{% endblock %}
-{% block content %}
+  {% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/thread-detail.css' %}"/>
+  <script defer src="{% static 'js/thread-detail.js' %}"></script>
+  {% endblock %}
+  {% block content %}
 
-<div class="container">
-  <div class="thread-img">
-    {% if thread.photo.url %}
-      <img 
-        src="{{thread.photo.url}}" 
-        alt="A photo of {{thread.title}}"
-        class="usr-img"
+  <div class="container">
+    <div class="thread-img">
+      {% if thread.photo.url %}
+        <img 
+          src="{{thread.photo.url}}" 
+          alt="A photo of {{thread.title}}"
+          class="usr-img"
+        >
+      {% endif %}
+    </div>
+    <div class="row">
+      <div class="col-md-8 card mb-4  mt-3 left  top">
+        <div class="card-body">
+          <h1>{% block title %} {{ thread.title }} {% endblock title %}</h1>
+          <p class=" text-muted">{{ thread.author }} | {{ thread.created_on }}</p>
+          <p class="card-text ">{{ thread.content | safe }}</p>
+        </div>
+      </div>
+      <div class="thread-actions">
+        {% if thread.user == request.user%}
+        <a href="{% url 'threads_update' thread.id  %}" class="btn warn">Edit</a>
+        <a href="{% url 'threads_delete' thread.id  %}" class="btn danger">Delete</a>
+      </div>
+      {% comment %} New markup below {% endcomment %}
+      <h3>Add photo</h3>
+      <p id="file-name"></p>
+      <form 
+        action="{% url 'add_photo' thread.id %}"
+        enctype="multipart/form-data"
+        method="POST"
       >
-    {% endif %}
-  </div>
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1>{% block title %} {{ thread.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ thread.author }} | {{ thread.created_on }}</p>
-        <p class="card-text ">{{ thread.content | safe }}</p>
+        {% csrf_token %}
+        <label class="btn secondary">
+          Choose photo
+          <input type="file" name="photo-file" id="file-input">
+        </label>
+        <button type="submit" class="btn submit">Upload Photo</button>
+      </form>
+    </div>
+        {% endif%}
       </div>
     </div>
-    <div class="thread-actions">
-      {% if thread.user == request.user%}
-      <a href="{% url 'threads_update' thread.id  %}" class="btn warn">Edit</a>
-      <a href="{% url 'threads_delete' thread.id  %}" class="btn danger">Delete</a>
-    </div>
-    {% comment %} New markup below {% endcomment %}
-    <h3>Add photo</h3>
-    <p id="file-name"></p>
-    <form 
-      action="{% url 'add_photo' thread.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      {% csrf_token %}
-      <label class="btn secondary">
-        Choose photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
   </div>
-      {% endif%}
-    </div>
-  </div>
-</div>
 
-{% endblock content %}
+  {% endblock content %}

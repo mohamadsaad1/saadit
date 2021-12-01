@@ -1,36 +1,37 @@
-{% extends "base.html" %} 
-{% load static %}
-{% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
-{% endblock %}
+    {% extends "base.html" %} 
+    {% load static %}
+    {% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    {% endblock %}
 
-{% block content %}
+    {% block content %}
 
-<div class="container">
-    <div class="card-img-container">
-        {% if thread.photo.url %}
-        <img 
-            src="{{thread.photo.url}}" 
-            alt="A photo of {{thread.title}}"
-            class="usr-img"
-        >
-        
-        {% endif %}
-    </div>
-    <div class="row">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
-            {% for thread in threads %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ thread.title }}</h2>
-                    <p class="card-text text-muted h6">{{ thread.author }} | {{ thread.created_on}} </p>
-                    <p class="card-text">{{thread.content|slice:":200" }}</p>
-                    <a href="{% url 'threads_detail' thread.id  %}" class="btn btn-primary">Read More &rarr;</a>
+    <div class="container">
+        <div class="card-img-container">
+            {% if thread.photo.url %}
+            <img 
+                src="{{thread.photo.url}}" 
+                alt="A photo of {{thread.title}}"
+                class="usr-img"
+            >
+            
+            {% endif %}
+        </div>
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8 mt-3 left">
+                {% for thread in threads %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ thread.title }}</h2>
+                        <p class="card-text text-muted h6">{{ thread.author }} | {{ thread.created_on}} </p>
+                        <p class="card-text">{{thread.content|slice:":200" }}</p>
+                        <a href="{% url 'threads_detail' thread.id  %}" class="btn btn-primary">Read More &rarr;</a>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
-        </div>    
+                {% endfor %}
+            </div>    
+        </div>
     </div>
-</div>
-{%endblock%}
+    {%endblock%}
