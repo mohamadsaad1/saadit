@@ -33,7 +33,7 @@ main > section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 
 .login h1 {
@@ -58,30 +58,7 @@ main > section {
   padding: 2px 4px;
 }
 
-.login .btn {
-  align-self: flex-end;
+.login-button {
   margin-right: 0;
-  margin-top: 16px;
-}
-
-@media only screen and (min-width: 768px) {
-  main {
-    justify-content: space-around;
-  }
-
-  main > section {
-    width: 40%;
-  }
-
-  .login {
-    border: var(--borders);
-    padding: 20px;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
-    width: 100%;
-  }
-
-  .logo-container {
-    max-width: 520px;
-  }
+  margin-top: 20px;
 }

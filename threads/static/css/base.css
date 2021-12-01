@@ -12,6 +12,10 @@ nav{
   vertical-align: middle;
 }
 
+#signup{
+  margin-left: 4%;
+}
+
 #home{
   padding-left: 3%;
 }
@@ -59,4 +63,10 @@ nav{
 .danger {
   color: var(--danger);
   border-color: var(--danger);
+}
+
+
+.sign-up {
+  display: flex;
+  justify-content: center;
 }

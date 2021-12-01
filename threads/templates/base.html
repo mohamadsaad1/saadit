@@ -25,8 +25,7 @@
                   <a id= "logout" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
                   {% else %}
-                  {% comment %} <a href="{% url 'home' %}">Login</a> {% endcomment %}
-                  <a href="{% url 'signup' %}">Sign Up</a>
+                  <a id="signup" href="{% url 'signup' %}">Sign Up</a>
                   {% endif %}
                 </div>
               </nav>
