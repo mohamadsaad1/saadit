@@ -22,13 +22,13 @@ Saadit is a place where you can browse through threads, view each thread's detai
 
 ### Details
  A user can view any thread's details
- 
- !["Details"](Details.png)
+
+ !["Details"](details.png)
 
 ### Edit / Delete
 A user has the ability to edit/delete any thread they have posted
 
- !["Edit"](Edit.png)
+ !["Edit"](edit.png)
 
 
 
