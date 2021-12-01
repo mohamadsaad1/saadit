@@ -1,8 +1,8 @@
     {% extends "base.html" %} 
     {% load static %}
+
     {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/threads-index.css' %}"/>
     {% endblock %}
 
     {% block content %}
@@ -18,20 +18,19 @@
             
             {% endif %}
         </div>
-        <div class="row">
-            <!-- Blog Entries Column -->
-            <div class="col-md-8 mt-3 left">
+                <a href="{% url 'thread_create' %}">Create thread</a>
+
+                <section class="card-container">
                 {% for thread in threads %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">{{ thread.title }}</h2>
-                        <p class="card-text text-muted h6">{{ thread.author }} | {{ thread.created_on}} </p>
-                        <p class="card-text">{{thread.content|slice:":200" }}</p>
-                        <a href="{% url 'threads_detail' thread.id  %}" class="btn btn-primary">Read More &rarr;</a>
+                <div class="card">
+                <a href="{% url 'threads_detail' thread.id  %}">
+                    <div class="card-content">
+                        <p id="author">Posted by {{ thread.author }} </p>
+                        <h2 class="card-title" >{{ thread.title }}</h2>
+                        <p>{{thread.content|slice:":200" }}</p>
                     </div>
+                </a>
                 </div>
                 {% endfor %}
-            </div>    
-        </div>
-    </div>
+            </section>
     {%endblock%}

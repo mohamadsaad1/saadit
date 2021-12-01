@@ -10,34 +10,37 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <title>Threads</title>
     <script src="https://kit.fontawesome.com/8d0c441ecb.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/threads.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     {% block head %}
     {% endblock %}
   </head>
       <body>
-          <nav class="navbar " >
-              <div class="first-class">
+          <nav>
+              
                 {% if user.is_authenticated %}
                   <a href="{% url 'threads_index' %}"><i class="fas fa-home"></i></a>
-                  <a href="{% url 'thread_create' %}">Create thread</a>
-                    {% comment %} <div class="col-3">
-                      <a href="javascript:{document.getElementById('{% url 'upvote' 
-                      thread.id %}').submit()}">
-                      <button class="btn btn-primary btn-lg btn- 
-                      block" name="btn1" value="upvote">
-                      <span class="oi oi-caret-top"> 
-                      </span> Upvote {{thread.votes_total }}</button></a> {% endcomment %}
-                      <a href="#"><i class="fas fa-comment"></i></a>
-                      <a href="#"><i class="fas fa-bell"></i></a>
-                      <a href="{% url 'logout' %}">Log out</a>
-                      {% else %}
-                      <a href="{% url 'home' %}">Login</a>
-                      <a href="{% url 'signup' %}">Sign Up</a>
-                    {% endif %}
+                  
+                  <a href="#"><i class="fas fa-comment"></i></a>
+                  <a href="#"><i class="fas fa-bell"></i></a>
+                  <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+                  {% else %}
+                  {% comment %} <a href="{% url 'home' %}">Login</a> {% endcomment %}
+                  <a href="{% url 'signup' %}">Sign Up</a>
+                  {% endif %}
                 </div>
-            </div>
-        </nav>
-        {% block content %}
-        {% endblock content %}
-    </body>
+              </nav>
+              {% block content %}
+              {% endblock content %}
+</body>
 </html>
+
+
+
+
+            {% comment %} <div class="col-3">
+              <a href="javascript:{document.getElementById('{% url 'upvote' 
+              thread.id %}').submit()}">
+              <button class="btn btn-primary btn-lg btn- 
+              block" name="btn1" value="upvote">
+              <span class="oi oi-caret-top"> 
+              </span> Upvote {{thread.votes_total }}</button></a> {% endcomment %}
