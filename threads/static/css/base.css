@@ -49,6 +49,7 @@ nav{
 .submit {
   color: var(--submit);
   border-color: var(--submit);
+  justify-content: flex-end;
 }
 
 .secondary {

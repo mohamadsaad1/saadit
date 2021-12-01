@@ -92,7 +92,7 @@
   justify-content: flex-start;
   width: 80%;
   height: 100%;
-  margin: 10px;
+  margin-top: 20px;
   border: 1px solid black;
   vertical-align: middle;
 }
@@ -105,3 +105,4 @@
   margin-bottom: auto;
   margin-top: auto;
 }
+
