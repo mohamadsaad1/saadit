@@ -4,10 +4,16 @@
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: large;
 }
 
 .card {
-
+  padding: 0 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
   margin: 10px;
   border: 1px solid black
 }
@@ -16,7 +22,10 @@
   padding: 10px;
   width: 100%;
 }
-
+.card-content > h2{
+  font-weight: bold;
+  font-size: xx-large;
+}
 .usr-img {
   width: 100%;
   border-radius: var(--card-border-radius);
@@ -40,3 +49,38 @@
 #author{
   color: grey;
 }
+
+.upvote{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  padding-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: xx-large;
+  height: 100%;
+
+}
+.upvote > a{
+  color: green;
+}
+
+#downvote{
+  color: red;
+}
+.card > a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.card h2 {
+  margin: 10px 0;
+  font-size: var(--font-xl);
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: var(--font-reg);
+}
+

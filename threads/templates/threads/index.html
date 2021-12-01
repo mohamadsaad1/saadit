@@ -19,18 +19,26 @@
             {% endif %}
         </div>
                 <a href="{% url 'thread_create' %}">Create thread</a>
-
                 <section class="card-container">
                 {% for thread in threads %}
                 <div class="card">
+                    <div class="upvote">
+                        <a href="#"><i class="fas fa-arrow-circle-up"></i></a>
+                        <a id="downvote" href="#"><i class="fas fa-arrow-circle-down"></i></a>
+                    </div>
+            
                 <a href="{% url 'threads_detail' thread.id  %}">
                     <div class="card-content">
+                    
                         <p id="author">Posted by {{ thread.author }} </p>
                         <h2 class="card-title" >{{ thread.title }}</h2>
                         <p>{{thread.content|slice:":200" }}</p>
-                    </div>
-                </a>
+
                 </div>
+            </a>
+            
+        </div>
+    
                 {% endfor %}
             </section>
     {%endblock%}

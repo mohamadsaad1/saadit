@@ -45,11 +45,13 @@ h3{
 .upvote{
   display: flex;
   flex-direction: column;
-  vertical-align: center;
-  padding-top: 10%;
+  justify-content: center;
+  vertical-align: middle;
   padding-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
   font-size: xx-large;
-
+  height: 100%;
 }
 .upvote > a{
   color: green;
